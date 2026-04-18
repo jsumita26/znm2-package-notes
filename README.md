@@ -1,2 +1,30 @@
 # znm2-package-notes
 1G 内存、不要 USB、不要 WiFi、ZeroTier、多 WAN
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 选包与精简</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    .ok{display:inline-block;padding:4px 10px;border-radius:999px;background:#e8fff0;color:#128a43;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 选包与精简记录</h1>
+  <p><span class="ok">正常访问</span></p>
+  <p>这个页面用于记录 ZN-M2 自编译时的软件包取舍思路。</p>
+  <h2>当前偏好</h2>
+  <ul>
+    <li>已升级 1G 内存</li>
+    <li>不保留 USB 驱动</li>
+    <li>不保留 WiFi 驱动</li>
+    <li>优先保留 ZeroTier 与多 WAN</li>
+  </ul>
+  <h2>后续考虑</h2>
+  <p>按需测试 科学插件，不一次性全部叠加。</p>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
