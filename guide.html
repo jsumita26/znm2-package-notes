@@ -1,0 +1,265 @@
+# 1 个 GitHub 账号 + 5 个仓库 + 5 个真实内容页
+
+下面这套方案的目标是：
+
+* 每个域名都有不同主题
+* 每个页面都足够轻量
+* 内容与你现有兴趣一致
+* 适合直接放到 GitHub Pages
+
+## 推荐的 5 个站点定位
+
+### 1. 编译总流程站
+
+* 仓库名：`znm2-build-flow`
+* 域名：`build.example.sld.tw`
+* 主题：ZN-M2 编译固件整体流程
+* 页面关键词：环境准备、feeds、menuconfig、编译、刷写前检查
+
+### 2. 选包与精简站
+
+* 仓库名：`znm2-package-notes`
+* 域名：`pkg.example.sld.tw`
+* 主题：哪些包该留，哪些可删
+* 页面关键词：1G 内存、不要 USB、不要 WiFi、ZeroTier、多 WAN
+
+### 3. 代理与网络功能站
+
+* 仓库名：`znm2-network-lab`
+* 域名：`net.example.sld.tw`
+* 主题：ZeroTier / 多 WAN / 代理功能实验记录
+* 页面关键词：功能拆分测试、依赖冲突、轻量优先
+
+### 4. 刷机与排错站
+
+* 仓库名：`znm2-flash-notes`
+* 域名：`flash.example.sld.tw`
+* 主题：刷机前检查与故障排查
+* 页面关键词：factory、sysupgrade、回退方案、日志、串口
+
+### 5. 更新日志与索引站
+
+* 仓库名：`znm2-lab-index`
+* 域名：`lab.example.sld.tw`
+* 主题：你的总导航页
+* 页面关键词：项目入口、更新时间、各站点链接
+
+---
+
+## GitHub Pages 部署方式
+
+每个仓库都放一个 `index.html` 即可。
+
+然后在每个仓库里打开：
+
+* Settings
+* Pages
+* Deploy from a branch
+* Branch 选 `main`
+* Folder 选 `/ (root)`
+* Custom domain 填对应的 `xxx.sld.tw`
+
+DNS 侧：
+
+* 每个域名只添加 1 条 `CNAME`
+* 记录值指向：`你的GitHub用户名.github.io`
+
+---
+
+## 首页模板 1：编译总流程站
+
+文件名：`index.html`
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 编译流程</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    h1{margin-bottom:8px}
+    .tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#eef7ff;color:#1565c0;font-size:14px}
+    code{background:#f5f5f5;padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 编译固件流程</h1>
+  <p><span class="tag">站点在线</span></p>
+  <p>这是一份关于兆能 ZN-M2 编译 OpenWrt 固件的大概流程说明页。</p>
+  <h2>步骤概览</h2>
+  <ol>
+    <li>准备 Linux 编译环境</li>
+    <li>拉取源码并同步 feeds</li>
+    <li>选择 target / device</li>
+    <li>按需精简驱动和插件</li>
+    <li>执行 <code>make menuconfig</code> 与编译</li>
+    <li>检查输出镜像并准备刷机</li>
+  </ol>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
+```
+
+---
+
+## 首页模板 2：选包与精简站
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 选包与精简</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    .ok{display:inline-block;padding:4px 10px;border-radius:999px;background:#e8fff0;color:#128a43;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 选包与精简记录</h1>
+  <p><span class="ok">正常访问</span></p>
+  <p>这个页面用于记录 ZN-M2 自编译时的软件包取舍思路。</p>
+  <h2>当前偏好</h2>
+  <ul>
+    <li>已升级 1G 内存</li>
+    <li>不保留 USB 驱动</li>
+    <li>不保留 WiFi 驱动</li>
+    <li>优先保留 ZeroTier 与多 WAN</li>
+  </ul>
+  <h2>后续考虑</h2>
+  <p>按需测试 SSR、Passwall、OpenClash，不一次性全部叠加。</p>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
+```
+
+---
+
+## 首页模板 3：代理与网络功能站
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 网络实验</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff3e0;color:#b26a00;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 网络功能实验</h1>
+  <p><span class="badge">实验记录页</span></p>
+  <p>这里主要记录 ZeroTier、多 WAN 以及代理类功能的拆分测试思路。</p>
+  <h2>实验原则</h2>
+  <ol>
+    <li>先通过基础联网测试</li>
+    <li>再加入 ZeroTier</li>
+    <li>再测试多 WAN</li>
+    <li>最后再叠加代理类组件</li>
+  </ol>
+  <p>目标是尽量减少依赖冲突并保持固件体积可控。</p>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
+```
+
+---
+
+## 首页模板 4：刷机与排错站
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 刷机与排错</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    .warn{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff1f2;color:#c2185b;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 刷机与排错笔记</h1>
+  <p><span class="warn">刷写前请再次核对</span></p>
+  <p>这个页面用于记录刷机前检查项和常见故障排查方向。</p>
+  <h2>刷机前检查</h2>
+  <ul>
+    <li>镜像类型是否正确</li>
+    <li>设备型号与分区是否匹配</li>
+    <li>是否保留回退方式</li>
+    <li>是否先用最小版验证启动</li>
+  </ul>
+  <p>排错优先顺序：设备型号 → 驱动 → 分区 → 软件包依赖。</p>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
+```
+
+---
+
+## 首页模板 5：总导航页
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ZN-M2 实验记录索引</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 20px;line-height:1.8;color:#222}
+    a{color:#1565c0;text-decoration:none} a:hover{text-decoration:underline}
+    .ok{display:inline-block;padding:4px 10px;border-radius:999px;background:#e8fff0;color:#128a43;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1>ZN-M2 实验记录索引</h1>
+  <p><span class="ok">主导航页</span></p>
+  <p>这里汇总 ZN-M2 编译、选包、网络实验和刷机排错相关页面。</p>
+  <ul>
+    <li><a href="https://build.example.sld.tw/">编译流程</a></li>
+    <li><a href="https://pkg.example.sld.tw/">选包与精简</a></li>
+    <li><a href="https://net.example.sld.tw/">网络实验</a></li>
+    <li><a href="https://flash.example.sld.tw/">刷机与排错</a></li>
+  </ul>
+  <p>更新时间：2026-04-18</p>
+</body>
+</html>
+```
+
+---
+
+## 最省事的执行顺序
+
+1. 先在 GitHub 建 5 个公开仓库
+2. 每个仓库放 1 个 `index.html`
+3. 开启 GitHub Pages
+4. 给每个仓库填写对应的自定义域名
+5. 在域名后台给每个域名加 1 条 CNAME
+6. 等待解析生效
+7. 打开站点确认都能访问
+
+---
+
+## 接下来最值得继续做的事
+
+你可以继续把这套方案细化成你自己的真实域名，例如：
+
+* `m2build.sld.tw`
+* `m2pkg.sld.tw`
+* `m2net.sld.tw`
+* `m2flash.sld.tw`
+* `m2lab.sld.tw`
+
+如果要继续优化，下一步最适合做的是：
+
+* 把 5 个页面统一成同一风格但不同内容
+* 在导航页里互相链接
+* 每个页面都加一点你自己的真实备注
